@@ -10,6 +10,6 @@ The PowerPoint covers the following topics:
 6. Assigning objects 
 7. Running descriptive statistics 
 8. Creating a plot 
-* Note: Steps 3-8 were follow-along practice. Students wrote their own code as we went through the presentation.
+* *Note: Steps 3-8 were follow-along practice. Students wrote their own code as we went through the presentation.
 
 The RMarkdown file used for the workshop is included in this repository. 
