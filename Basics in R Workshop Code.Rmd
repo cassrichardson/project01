@@ -1,0 +1,121 @@
+---
+title: "Project 3, Basics in R workshop"
+author: "Angelina Venetto and Cassandra Richardson"
+date: "4/12/2022"
+output: html_document
+---
+
+# Load the library. We will be loading the palmer penguins data set
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+# Load in the palmer penguins data set:
+
+```{r}
+palmerpenguins::penguins
+```
+
+# Lets do an example!!! 
+
+# First, we are going to find the mean bill length for penguins on dream island.
+
+# We will first have to clean the data set to keep only the data from Dream island penguins
+
+```{r}
+Dream_island <- penguins %>%
+  filter(island %in% c("Dream")) 
+  Dream_island
+```
+
+# We are now going to run a basic mean procedure using the clean data set. We will find that the mean bill length for penuins on dream island is 44.2mm.
+
+```{r}
+Dream_island |> 
+  summarize(
+    mean = mean(bill_length_mm)
+  )
+```
+# We can also calulate the mean of bill depth! Which we will find is 18.3
+
+```{r}
+Dream_island |> 
+  summarize(
+    mean = mean(bill_depth_mm)
+  )
+```
+
+# So what can we do with this information? Let's plot it! By plotting the data using ggplot, we will be able to compare the bill lengths and bill depths of the different species on Dream island 
+
+# This is a very basic scatter plot showing standard bill length and depth for all penguins in Dream island. 
+
+```{r}
+ggplot(Dream_island) +
+  aes (x = bill_depth_mm,
+       y = bill_length_mm) +
+  geom_point() 
+
+```
+
+# Lets add color, fill, and shape to the aesthetics so we can visualize data from the different species. We can also add a trend line.
+
+```{r}
+ggplot(Dream_island) +
+  aes (x = bill_depth_mm,
+       y = bill_length_mm,
+       color = species,
+       fill = species,
+       shape = species) +
+  geom_point() +
+geom_smooth(method = lm)
+
+```
+
+# Another cool feature of ggplot is themes! I think this data would like cool with a darker theme, lets add it!
+
+# First, lets load the package. 
+
+```{r}
+library(hrbrthemes)
+```
+
+# Now let's add it!
+
+```{r}
+ggplot(Dream_island) +
+  aes (x = bill_depth_mm,
+       y = bill_length_mm,
+       color = species,
+       fill = species,
+       shape = species) +
+  geom_point() +
+geom_smooth(method = lm) +
+ theme_modern_rc()
+```
+
+# To clean this graph, lets add some titles and labels
+
+## (referenced: http://www.sthda.com/english/wiki/ggplot2-title-main-axis-and-legend-titles) for ggtitle and label code explanation
+
+```{r}
+ggplot(Dream_island) +
+  aes (x = bill_depth_mm,
+       y = bill_length_mm,
+       color = species,
+       fill = species,
+       shape = species) +
+  geom_point() +
+geom_smooth(method = lm) +
+ theme_modern_rc() +
+ggtitle("Dream Island Pengiuns") +
+  xlab("Bill Depth") +
+  ylab("Bill Length")
+```
+
+# Conclusiosn from the data: we were able to examine the penguins on Dream island and come to some interesting conclusions: 
+1. Dream island only has Adelie and Chinstrap penguins
+2. Chinstrap penguins have much bigger bills, as they have a larger bill length and depth
+
+
