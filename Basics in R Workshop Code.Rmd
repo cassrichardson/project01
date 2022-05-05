@@ -14,7 +14,7 @@ library(palmerpenguins)
 
 # Load in the palmer penguins data set:
 
-```{r}
+```{r loading}
 palmerpenguins::penguins
 ```
 
@@ -24,7 +24,7 @@ palmerpenguins::penguins
 
 # We will first have to clean the data set to keep only the data from Dream island penguins
 
-```{r}
+```{r cleaning}
 Dream_island <- penguins %>%
   filter(island %in% c("Dream")) 
   Dream_island
@@ -32,7 +32,7 @@ Dream_island <- penguins %>%
 
 # We are now going to run a basic mean procedure using the clean data set. We will find that the mean bill length for penuins on dream island is 44.2mm.
 
-```{r}
+```{r mean bill length}
 Dream_island |> 
   summarize(
     mean = mean(bill_length_mm)
@@ -40,7 +40,7 @@ Dream_island |>
 ```
 # We can also calulate the mean of bill depth! Which we will find is 18.3
 
-```{r}
+```{r mean bill depth}
 Dream_island |> 
   summarize(
     mean = mean(bill_depth_mm)
@@ -51,7 +51,7 @@ Dream_island |>
 
 # This is a very basic scatter plot showing standard bill length and depth for all penguins in Dream island. 
 
-```{r}
+```{r plot1}
 ggplot(Dream_island) +
   aes (x = bill_depth_mm,
        y = bill_length_mm) +
@@ -61,7 +61,7 @@ ggplot(Dream_island) +
 
 # Lets add color, fill, and shape to the aesthetics so we can visualize data from the different species. We can also add a trend line.
 
-```{r}
+```{r plot2}
 ggplot(Dream_island) +
   aes (x = bill_depth_mm,
        y = bill_length_mm,
@@ -77,13 +77,13 @@ geom_smooth(method = lm)
 
 # First, lets load the package. 
 
-```{r}
+```{r loading more}
 library(hrbrthemes)
 ```
 
 # Now let's add it!
 
-```{r}
+```{r more plots}
 ggplot(Dream_island) +
   aes (x = bill_depth_mm,
        y = bill_length_mm,
@@ -99,7 +99,7 @@ geom_smooth(method = lm) +
 
 ## (referenced: http://www.sthda.com/english/wiki/ggplot2-title-main-axis-and-legend-titles) for ggtitle and label code explanation
 
-```{r}
+```{r titled plot}
 ggplot(Dream_island) +
   aes (x = bill_depth_mm,
        y = bill_length_mm,
@@ -114,7 +114,8 @@ ggtitle("Dream Island Pengiuns") +
   ylab("Bill Length")
 ```
 
-# Conclusiosn from the data: we were able to examine the penguins on Dream island and come to some interesting conclusions: 
+# *Conclusions from the data:*
+# We were able to examine the penguins on Dream island and come to some interesting conclusions: 
 1. Dream island only has Adelie and Chinstrap penguins
 2. Chinstrap penguins have much bigger bills, as they have a larger bill length and depth
 
